@@ -1,0 +1,7 @@
+{
+  "name": "listinganddetail",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
