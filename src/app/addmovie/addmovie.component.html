@@ -1,0 +1,62 @@
+<!-- addmovie.page.html -->
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>Add movie</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [disabled]="!addmovieform.valid" (click)="confirm(true)" >Confirm</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <form [formGroup]="addmovieform" >
+    <ion-card>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">NAME</ion-label>
+          <ion-input formControlName="name" type="text"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="addmovieform.get('name')?.invalid && addmovieform.get('name')?.touched">
+          <ion-text color="danger" *ngIf="addmovieform.get('name')?.errors?.['required']">Name is required</ion-text>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Category</ion-label>
+          <ion-input formControlName="category" type="text"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="addmovieform.get('category')?.invalid && addmovieform.get('category')?.touched">
+          <ion-text color="danger" *ngIf="addmovieform.get('category')?.errors?.['required']">Category is required</ion-text>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">URL</ion-label>
+          <ion-input formControlName="url" type="text"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="addmovieform.get('url')?.invalid && addmovieform.get('url')?.touched">
+          <ion-text color="danger" *ngIf="addmovieform.get('url')?.errors?.['required']">URL is required</ion-text>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Cast</ion-label>
+          <ion-input formControlName="cast" type="text"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="addmovieform.get('cast')?.invalid && addmovieform.get('cast')?.touched">
+          <ion-text color="danger" *ngIf="addmovieform.get('cast')?.errors?.['required']">Cast is required</ion-text>
+          <ion-text color="danger" *ngIf="addmovieform.get('cast')?.errors?.['arrayMinLength']">Cast must have at least 2 members</ion-text>
+        </ion-item>
+      </ion-card-content>
+      <!-- <ion-card-footer> -->
+        <!-- <ion-button [disabled]="!addmovieform.valid" type="submit">Save</ion-button> -->
+      <!-- </ion-card-footer> -->
+      <ion-toast
+      [isOpen]="isToastOpen"
+      message="Movie added successfully !!"
+      [duration]="2000"
+      (didDismiss)="confirm(false)"
+      color="success">
+    ></ion-toast>
+    </ion-card>
+  </form>
+</ion-content>

@@ -1,0 +1,34 @@
+{
+  "movies": [
+    {
+      "id": "2",
+      "name": "The Godfather",
+      "category": "Crime",
+      "cast": [
+        "Marlon Brando",
+        "Al Pacino"
+      ],
+      "url": "https://img.freepik.com/free-photo/view-3d-cinema-elements_23-2150720822.jpg"
+    },
+    {
+      "id": "3",
+      "name": "The Dark Knight",
+      "category": "Action",
+      "cast": [
+        "Christian Bale",
+        "Heath Ledger"
+      ],
+      "url": "https://img.freepik.com/free-photo/view-3d-cinema-elements_23-2150720822.jpg"
+    },
+    {
+      "id": "4",
+      "name": "Pulp Fiction",
+      "category": "Crime",
+      "cast": [
+        "John Travolta",
+        "Uma Thurman"
+      ],
+      "url": "https://img.freepik.com/free-photo/view-3d-cinema-elements_23-2150720822.jpg"
+    }
+  ]
+}

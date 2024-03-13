@@ -1,0 +1,53 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
+      </ion-buttons>
+      <ion-title>Edit movie</ion-title>
+      <ion-buttons slot="end">
+        <ion-button [disabled]="!editform.valid" (click)="confirm(true)">Save</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="ion-padding">
+    <form [formGroup]="editform">
+      <ion-card>
+        <ion-card-content>
+          <ion-item>
+            <ion-label position="floating">NAME</ion-label>
+            <ion-input formControlName="name" type="text"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="editform.get('name')?.invalid && editform.get('name')?.touched">
+            <ion-text color="danger" *ngIf="editform.get('name')?.errors?.['required']">Name is required</ion-text>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Category</ion-label>
+            <ion-input formControlName="category" type="text"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="editform.get('category')?.invalid && editform.get('category')?.touched">
+            <ion-text color="danger" *ngIf="editform.get('category')?.errors?.['required']">Category is required</ion-text>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">URL</ion-label>
+            <ion-input formControlName="url" type="text"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="editform.get('url')?.invalid && editform.get('url')?.touched">
+            <ion-text color="danger" *ngIf="editform.get('url')?.errors?.['required']">URL is required</ion-text>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Cast</ion-label>
+            <ion-input formControlName="cast" type="text"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="editform.get('cast')?.invalid && editform.get('cast')?.touched">
+            <ion-text color="danger" *ngIf="editform.get('cast')?.errors?.['required']">Cast is required</ion-text>
+          </ion-item>
+        </ion-card-content>
+
+        <ion-toast [isOpen]="isToastOpen" message="Movie updated successfully!!" duration="2000" color="success"></ion-toast>
+      </ion-card>
+    </form>
+  </ion-content>

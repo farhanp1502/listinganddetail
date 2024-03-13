@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Movie Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Movie Details</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+  <ion-card class="movie" *ngIf="movie">
+    <img alt="Silhouette of mountains" [src]="movie.url" />
+
+    <ion-card-header><strong style="color: black;">
+
+      {{ movie.name }}
+    </strong>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Category: {{ movie.category }}</p>
+      <p>Cast: {{ movie.cast.join(', ') }}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,24 @@
+mat-form-field {
+    width: 100%;
+    margin-bottom: 20px; // Adjust as needed
+  }
+
+  mat-error {
+    color: red;
+    font-size: 12px;
+    margin-top: 4px; // Adjust as needed
+  }
+
+  mat-card {
+    max-width: 400px; // Adjust as needed
+    margin: 20px auto; // Center the card
+  }
+
+  mat-card-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  mat-card-actions {
+    justify-content: flex-end;
+  }

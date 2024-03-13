@@ -1,20 +1,41 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Home
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="container">
+    <div class="nav">
+      <ion-searchbar id="searchbar" [(ngModel)]="searchQuery" (ionChange)="searchMovies($event.detail?.value || '')"></ion-searchbar>
+      <ion-button (click)="addmovie()">Add  Movie</ion-button>
+    </div>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <div class="cardsblock">
+
+      <ion-card id="card" color="light" *ngFor="let item of filteredMovies;let i as index">
+        <ion-card-header>
+          <ion-card-title>{{item.name}}</ion-card-title>
+          <ion-card-subtitle>{{item.category}}</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+          {{item.cast}}
+        </ion-card-content>
+        <ion-button (click)="func(item.id)" fill="clear">More</ion-button>
+        <ion-button (click)="editmovie(item.id)" fill="clear">Edit</ion-button>
+        <ion-button    (click)="deletefun(item.id)" color="danger" fill="clear">delete</ion-button>
+      </ion-card>
+    </div>
   </div>
 </ion-content>
+
+<ion-toast
+      [isOpen]="isToaOpen"
+      message="Movie deleted successfully !!"
+      [duration]="2000"
+      (didDismiss)="toster(false)"
+      color="success">
+    ></ion-toast>
