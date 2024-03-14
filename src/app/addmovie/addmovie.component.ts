@@ -47,8 +47,7 @@ export class AddmovieComponent   {
       return this.modalCtrl.dismiss('cancel');
     }
 
-    confirm(isOpen: boolean) {
-      this.isToastOpen = isOpen;
+    confirm() {
       if (this.addmovieform.valid) {
         const castValue = this.addmovieform.get('cast')?.value;
         let castarr = castValue?.split(',');
@@ -56,11 +55,14 @@ export class AddmovieComponent   {
           ... this.addmovieform.value,
           cast: castarr,
         }
+        this.modalCtrl.dismiss( 'confirm');
         this.service.addmovie(newdata).subscribe((res)=>{
+          // this.isToastOpen = isOpen;
+          this.service.showSuccess('Success','Movie added successfully');
+
         })
-        this.addmovieform.reset();
+      //   // this.addmovieform.reset();
       }
-      return this.modalCtrl.dismiss(null, 'confirm');
     }
 
   }

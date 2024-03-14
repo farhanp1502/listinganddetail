@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MainService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private toastr:ToastrService) { }
   movieid:string | undefined;
-
+  showSuccess(title:any, message:any){
+    this.toastr.success(message,title);
+  }
   getData() {
     return this.http.get<any[]>('http://localhost:5004/movies');
   }

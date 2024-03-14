@@ -5,7 +5,9 @@ import { ModalController } from '@ionic/angular';
 import { AddmovieComponent } from '../addmovie/addmovie.component';
 import { EditmovieComponent } from '../editmovie/editmovie.component';
 // import { AddmoviePage } from '../addmovie/addmovie.page';
-// import { MatDialog } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
+// import { DeleteConfirmationDialogComponent } from '';
 
 
 @Component({
@@ -22,7 +24,8 @@ export class HomePage implements OnInit {
     private service: MainService,
     private router: Router,
     private route: ActivatedRoute,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -53,57 +56,55 @@ export class HomePage implements OnInit {
       }
     );
   }
-  async addmovie(){
+  async addmovie() {
     // this.router.navigate(['addmovie']);
     // async openModal() {
-      const modal = await this.modalCtrl.create({
-        component: AddmovieComponent,
-      });
-      modal.present();
+    const modal = await this.modalCtrl.create({
+      component: AddmovieComponent,
+    });
+    modal.present();
 
-      const {  role } = await modal.onWillDismiss();
+    const { role } = await modal.onWillDismiss();
 
-      if (role === 'cancel'|| role === "confirm") {
-        this.getdata();
-
-      }
-      else{
-
-        this.getdata();
-      }
-
-  }
-  isToaOpen = false;
-  toster(x:boolean){
-    this.isToaOpen = x;
-  }
-  deletefun(id:any){
-    let result = confirm("please confirm to delete");
-    if(result==true){
-      this.service.deletemovie(id).subscribe((res)=>{
-        this.getdata();
-        this.toster(true);
-      })
+    if (role === 'cancel' || role === 'confirm') {
+      this.getdata();
+    } else {
+      this.getdata();
     }
   }
+  isToaOpen = false;
+  toster(x: boolean) {
+    this.isToaOpen = x;
+  }
+  deletefun(id: any) {
+    const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
+      width: '250px',
+      data: {}
+    });
 
-  async editmovie(id:string){
-      this.service.movieid = id;
-      const modal = await this.modalCtrl.create({
-        component: EditmovieComponent,
-      });
-      modal.present();
-
-      const {  role } = await modal.onWillDismiss();
-
-      if (role === 'cancel'|| role === "confirm") {
-        this.getdata();
-
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.service.deletemovie(id).subscribe(() => {
+          this.getdata();
+          this.service.showSuccess('Success', 'Movie deleted successfully');
+        });
       }
-      else{
+    });
+  }
 
-        this.getdata();
-      }
+  async editmovie(id: string) {
+    this.service.movieid = id;
+    const modal = await this.modalCtrl.create({
+      component: EditmovieComponent,
+    });
+    modal.present();
 
+    const { role } = await modal.onWillDismiss();
+
+    if (role === 'cancel' || role === 'confirm') {
+      this.getdata();
+    } else {
+      this.getdata();
+    }
   }
 }

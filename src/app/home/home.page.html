@@ -11,6 +11,7 @@
     <div class="nav">
       <ion-searchbar id="searchbar" [(ngModel)]="searchQuery" (ionChange)="searchMovies($event.detail?.value || '')"></ion-searchbar>
       <ion-button (click)="addmovie()">Add  Movie</ion-button>
+      <!-- <p-button label="Submit"></p-button> -->
     </div>
 
     <div class="cardsblock">
@@ -32,10 +33,10 @@
   </div>
 </ion-content>
 
-<ion-toast
+<!-- <ion-toast
       [isOpen]="isToaOpen"
       message="Movie deleted successfully !!"
       [duration]="2000"
       (didDismiss)="toster(false)"
       color="success">
-    ></ion-toast>
+    ></ion-toast> -->

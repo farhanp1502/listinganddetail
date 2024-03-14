@@ -1,12 +1,12 @@
 <ion-header>
-    <ion-toolbar>
-      <ion-buttons slot="start">
+    <ion-toolbar style="width: 100%; text-align: center;">
+      <!-- <ion-buttons slot="start">
         <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
-      </ion-buttons>
+      </ion-buttons> -->
       <ion-title>Edit movie</ion-title>
-      <ion-buttons slot="end">
+      <!-- <ion-buttons slot="end">
         <ion-button [disabled]="!editform.valid" (click)="confirm(true)">Save</ion-button>
-      </ion-buttons>
+      </ion-buttons> -->
     </ion-toolbar>
   </ion-header>
 
@@ -47,7 +47,16 @@
           </ion-item>
         </ion-card-content>
 
-        <ion-toast [isOpen]="isToastOpen" message="Movie updated successfully!!" duration="2000" color="success"></ion-toast>
       </ion-card>
     </form>
   </ion-content>
+  <ion-footer>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
+      </ion-buttons>
+      <ion-buttons slot="end">
+        <ion-button [disabled]="!editform.valid" (click)="confirm()">Save</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-footer>

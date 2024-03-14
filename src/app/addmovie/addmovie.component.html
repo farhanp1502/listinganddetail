@@ -1,13 +1,13 @@
 <!-- addmovie.page.html -->
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
+  <ion-toolbar style="width: 100%; text-align: center;">
+    <!-- <ion-buttons slot="start">
       <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
-    </ion-buttons>
+    </ion-buttons> -->
     <ion-title>Add movie</ion-title>
-    <ion-buttons slot="end">
+    <!-- <ion-buttons slot="end">
       <ion-button [disabled]="!addmovieform.valid" (click)="confirm(true)" >Confirm</ion-button>
-    </ion-buttons>
+    </ion-buttons> -->
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
@@ -50,13 +50,24 @@
       <!-- <ion-card-footer> -->
         <!-- <ion-button [disabled]="!addmovieform.valid" type="submit">Save</ion-button> -->
       <!-- </ion-card-footer> -->
-      <ion-toast
+      <!-- <ion-toast
       [isOpen]="isToastOpen"
       message="Movie added successfully !!"
       [duration]="2000"
-      (didDismiss)="confirm(false)"
+      (didDismiss)="confirm()"
       color="success">
-    ></ion-toast>
+    ></ion-toast> -->
     </ion-card>
   </form>
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button [disabled]="!addmovieform.valid" (click)="confirm()" >Confirm</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
+<!-- <button pButton pRipple label="Submit" class="p-button-success"></button> -->

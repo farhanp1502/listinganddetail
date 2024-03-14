@@ -10,7 +10,7 @@ import { MainService } from '../services/main.service';
 })
 export class EditmovieComponent implements OnInit {
   data: any;
-  isToastOpen = false;
+  // isToastOpen = false;
   id:any;
 
   constructor(
@@ -43,8 +43,8 @@ export class EditmovieComponent implements OnInit {
     return this.modalCtrl.dismiss('cancel');
   }
 
-  confirm(isOpen: boolean) {
-    this.isToastOpen = isOpen;
+  confirm() {
+    // this.isToastOpen = isOpen;
     if (this.editform.valid) {
       const castValue = this.editform.get('cast')?.value;
       let castarr = castValue?.split(',');
@@ -53,12 +53,14 @@ export class EditmovieComponent implements OnInit {
         cast: castarr,
       };
       // this.service.addmovie(newdata).subscribe((res) => {});
+      this.modalCtrl.dismiss( 'confirm');
       this.service.updatemovie(this.id, newdata).subscribe((res) =>{
-        console.log(res);
+        // console.log(res);
+        this.service.showSuccess('Success','Movie updated successfully');
+
       });
-      this.editform.reset();
+      // this.editform.reset();
     }
-    return this.modalCtrl.dismiss(null, 'confirm');
   }
 
   // Custom validator function to check if the value is a list separated by commas with minimum 2 elements
